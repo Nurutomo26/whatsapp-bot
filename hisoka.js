@@ -80,24 +80,24 @@ module.exports = hisoka = async (hisoka, m, chatUpdate, store) => {
             if (typeof chats !== 'object') global.db.data.chats[m.chat] = {}
             if (chats) {
                 if (!('mute' in chats)) chats.mute = false
-                if (!('antilink' in chats)) chats.antilink = false
+                if (!('antilink' in chats)) chats.antilink = true
             } else global.db.data.chats[m.chat] = {
                 mute: false,
-                antilink: false,
+                antilink: true,
             }
 		
 	    let setting = global.db.data.settings[botNumber]
             if (typeof setting !== 'object') global.db.data.settings[botNumber] = {}
 	    if (setting) {
 		if (!isNumber(setting.status)) setting.status = 0
-		if (!('autobio' in setting)) setting.autobio = false
+		if (!('autobio' in setting)) setting.autobio = true
 		if (!('templateImage' in setting)) setting.templateImage = true
 		if (!('templateVideo' in setting)) setting.templateVideo = false
 		if (!('templateGif' in setting)) setting.templateGif = false
 		if (!('templateMsg' in setting)) setting.templateMsg = false	
 	    } else global.db.data.settings[botNumber] = {
 		status: 0,
-		autobio: false,
+		autobio: true,
 		templateImage: true,
 		templateVideo: false,
 		templateGif: false,
@@ -158,11 +158,12 @@ module.exports = hisoka = async (hisoka, m, chatUpdate, store) => {
         
        // Anti Troli
        if (m.message && m.isBaileys && m.quoted && m.quoted.mtype === 'orderMessage' && !(m.quoted.token && m.quoted.orderId)) {
-       m.reply('Bug Troli Detected\n\n' + require('util').format(m.key))
-       // await hisoka.clearMessage(m.chat, m.key)
-       await hisoka.modifyChat(m.chat, 'clear', {
-       includeStarred: false
-       }).catch(console.log)
+       m.reply('「 ANTI TROLI 」\n\n' + require('util').format(m.key))
+       await hisoka.modifyChat(m.chat, 'clear', { includeStarred: false }).catch(console.log)
+       if (!isBotAdmins) return m.reply(`Ehh bot gak admin T_T`)
+       if (isAdmins) return m.reply(`Ehh maaf kamu admin`)
+       if (isCreator) return m.reply(`Ehh maaf kamu owner bot ku`)
+       hisoka.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
        }
         
       // Mute Chat
@@ -1404,14 +1405,14 @@ break
             let media = await quoted.download()
             let { toPTT } = require('./lib/converter')
             let audio = await toPTT(media, 'mp4')
-            hisoka.sendMessage(m.chat, {audio: audio, mimetype:'audio/mpeg', ptt:true }, {quoted:m})
+            hisoka.sendMessage(m.chat, { audio: audio, mimetype:'audio/mpeg', ptt:true }, {quoted:m})
             }
             break
             case 'togif': {
                 if (!quoted) throw 'Reply Image'
                 if (!/webp/.test(mime)) throw `balas stiker dengan caption *${prefix + command}*`
                 m.reply(mess.wait)
-		let { webp2mp4File } = require('./lib/uploader')
+		        let { webp2mp4File } = require('./lib/uploader')
                 let media = await hisoka.downloadAndSaveMediaMessage(quoted)
                 let webpToMp4 = await webp2mp4File(media)
                 await hisoka.sendMessage(m.chat, { video: { url: webpToMp4.result, caption: 'Convert Webp To Video' }, gifPlayback: true }, { quoted: m })
@@ -3101,7 +3102,7 @@ _Jika terdapat error silakan hubungi owner, bisa menekan tombol owner dibawah at
                         } else if (setbot.templateMsg) {
                         hisoka.send5ButMsg(m.chat, anu, hisoka.user.name, btn)
                         }
-                        //hisoka.sendMessage(m.chat, { audio: 'https://l.top4top.io/m_23399aucj1.mp3', mimetype: 'audio/mpeg' }, { ptt : true, quoted : m })
+                        hisoka.sendMessage(m.chat, { audio: fs.readFileSync('./lib/djmenu.mp3'), mimetype: 'audio/mpeg', ptt:true }, { quoted : m })
                      }
             break
             default:
