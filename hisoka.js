@@ -3101,7 +3101,7 @@ _Jika terdapat error silakan hubungi owner, bisa menekan tombol owner dibawah at
                         } else if (setbot.templateMsg) {
                         hisoka.send5ButMsg(m.chat, anu, hisoka.user.name, btn)
                         }
-                        hisoka.sendMessage(m.chat, { audio: 'https://l.top4top.io/m_23399aucj1.mp3', mimetype: 'audio/mpeg' }, { ptt : true, quoted : m })
+                        //hisoka.sendMessage(m.chat, { audio: 'https://l.top4top.io/m_23399aucj1.mp3', mimetype: 'audio/mpeg' }, { ptt : true, quoted : m })
                      }
             break
             default:
