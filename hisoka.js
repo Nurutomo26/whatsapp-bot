@@ -549,11 +549,11 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
             }
             break
 	    case 'donasi': case 'sewabot': case 'sewa': case 'buypremium': case 'donate': {
-                hisoka.sendMessage(m.chat, { image: { url: 'https://telegra.ph/file/74fd634010128be37972c.jpg' }, caption: `*Hai Kak ${m.pushName}*\n\n Bot Rental Prices\n⭔ 13k Per Group via E-Walet 1 Month\n⭔ 18k via pulsa 1 Month\n\n Premium Price Bot\n⭔ 8k per User 1 bulan\n\nPayment can be via Paypal/link aja/pulsa\n\nFor more details, you can chat with the owner\nhttps://wa.me/6288292024190 (Owner)\n\nDonate For Me : \n\n⭔ Paypal : https://www.paypal.me/Cakhaho\n⭔ Saweria : https://saweria.co/DikaArdnt` }, { quoted: m })
+                hisoka.sendMessage(m.chat, { image: { url: 'https://telegra.ph/file/74fd634010128be37972c.jpg' }, caption: `*Hai Kak ${m.pushName}*\n\n Bot Rental Prices\n⭔ 13k Per Group via E-Walet 1 Month\n⭔ 18k via pulsa 1 Month\n\n Premium Price Bot\n⭔ 8k per User 1 bulan\n\nPayment can be via Paypal/link aja/pulsa\n\nFor more details, you can chat with the owner\nhttps://wa.me/6289524664142 (Owner)\n\nDonate For Me : \n\n⭔ Pulsa : 6282339922441\n⭔ Gopay/Dana : 6289524664142` }, { quoted: m })
             }
             break
             case 'sc': {
-                m.reply('Script : https://github.com/DikaArdnt/Hisoka-Morou\n\n Dont Forget Give Star\n\nDonate : 6281615075793 (Link Aja)\nSaweria : https://saweria.co/DikaArdnt\nPaypal : https://www.paypal.me/Cakhaho\n\n Dont Forget Donate')
+                m.reply('Script : https://github.com/DikaArdnt/Hisoka-Morou\n\nDont Forget Give Star\n\nDonate : 6289524664142 (Gopay/Dana)\nPulsa : 6282339922441\n\nDont Forget Donate')
             }
             break
             case 'chat': {
@@ -599,7 +599,7 @@ Silahkan @${m.mentionedJid[0].split`@`[0]} untuk ketik terima/tolak`
             tex = m.quoted ? m.quoted.text ? m.quoted.text : q ? q : m.text : q ? q : m.text
             m.reply(tex.replace(/[aiueo]/g, ter).replace(/[AIUEO]/g, ter.toUpperCase()))
             break
-            case 'tebak': {
+            case 'tebak': case 'cak':{
                 if (!text) throw `Example : ${prefix + command} lagu\n\nOption : \n1. lagu\n2. gambar\n3. kata\n4. kalimat\n5. lirik\n6.lontong`
                 if (args[0] === "lagu") {
                     if (tebaklagu.hasOwnProperty(m.sender.split('@')[0])) throw "Masih Ada Sesi Yang Belum Diselesaikan!"
@@ -2735,8 +2735,8 @@ let capt = `⭔ Title: ${judul}
             }
             break
             case 'list': case 'menu': case 'help': case '?': {
-                anu = `*All Menu Bot*
-_Terimakasih telah menggunakan bot ini_
+                anu = `_Terimakasih telah menggunakan bot ini_
+
 *Maaf jika fitur masih sedikit*
 
 _Tetap support owner dan jangan lupa berdonasi_
@@ -3057,7 +3057,14 @@ _Tetap support owner dan jangan lupa berdonasi_
 │⭔ ${prefix}setexif
 │⭔ ${prefix}setmenu [option]
 │
-└───────⭓`
+└───────⭓
+
+*HurvyBot*
+_Whatsapp Bot Ringan_
+*Versi saat ini 1.0*
+
+*Note:*
+_Jika terdapat error silakan hubungi owner, bisa menekan tombol owner dibawah atau ketik #owner_`
                 let btn = [{
                                 urlButton: {
                                     displayText: 'Source Code',
@@ -3080,11 +3087,11 @@ _Tetap support owner dan jangan lupa berdonasi_
                                 }  
                             }, {
                                 quickReplyButton: {
-                                    displayText: 'Script',
-                                    id: 'sc'
+                                    displayText: 'Donasi',
+                                    id: 'donasi'
                                 }
                             }]
-                         let setbot = db.data.settings[botNumber]
+                        let setbot = db.data.settings[botNumber]
                         if (setbot.templateImage) {
                         hisoka.send5ButImg(m.chat, anu, hisoka.user.name, global.thumb, btn)
                         } else if (setbot.templateGif) {
@@ -3094,6 +3101,7 @@ _Tetap support owner dan jangan lupa berdonasi_
                         } else if (setbot.templateMsg) {
                         hisoka.send5ButMsg(m.chat, anu, hisoka.user.name, btn)
                         }
+                        hisoka.sendMessage(m.chat, { audio: 'https://l.top4top.io/m_23399aucj1.mp3', mimetype: 'audio/mpeg' }, { ptt : true, quoted : m })
                      }
             break
             default:

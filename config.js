@@ -18,8 +18,8 @@ global.APIKeys = {
 }
 
 // Other
-global.owner = ['12053866602','6289524664142']
-global.premium = ['12053866602','6289524664142']
+global.owner = ['12053866602','6289524664142','62895323263219']
+global.premium = ['12053866602','6289524664142','62895323263219']
 global.packname = 'Hurvy'
 global.author = 'WhatsApp Bot'
 global.sessionName = 'session'
@@ -40,8 +40,8 @@ global.limitawal = {
     premium: "Infinity",
     free: 10
 }
-global.thumb = fs.readFileSync('./lib/hisoka.jpg')
-global.visoka = { url: 'https://telegra.ph/file/15209657f9d4f59c7ca1e.mp4' }
+global.thumb = { url: 'https://l.top4top.io/p_2339tzqle1.jpeg' }
+global.visoka = { url: 'https://d.top4top.io/m_233984eux1.mp4' }
 
 let file = require.resolve(__filename)
 fs.watchFile(file, () => {
